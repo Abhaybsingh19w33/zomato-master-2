@@ -1,11 +1,12 @@
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 
 // HOC
 import HomeLayoutHOC from "./HOC/Home.Hoc";
 import RestaurantLayoutHOC from "./HOC/Restaurant.HOC";
+import CheckoutLayoutHOC from "./HOC/Checkout.Hoc";
 
 // Component
-import Temp from "./Components/temp";
+// import Temp from "./Components/temp";
 // import Master from "./Components/master";
 import React, { Fragment } from "react";
 
@@ -16,6 +17,7 @@ import OrderOnline from "./Page/Restaurant/OrderOnline";
 import Reviews from "./Page/Restaurant/Reviews";
 import Menu from "./Page/Restaurant/Menu";
 import Photos from "./Page/Restaurant/Photos";
+import Checkout from "./Page/Checkout";
 
 function App() {
   return (
@@ -38,8 +40,8 @@ function App() {
         component={OrderOnline}
       />
       <RestaurantLayoutHOC
-        path="/restaurant/:id/menu" 
-        exact 
+        path="/restaurant/:id/menu"
+        exact
         component={Menu} />
       <RestaurantLayoutHOC
         path="/restaurant/:id/reviews"
@@ -50,6 +52,11 @@ function App() {
         path="/restaurant/:id/photos"
         exact
         component={Photos}
+      />
+      <CheckoutLayoutHOC
+        path="/checkout/orders"
+        exact
+        component={Checkout}
       />
     </Fragment>
   );
