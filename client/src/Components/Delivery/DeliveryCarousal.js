@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Slider from "react-slick";
 
 // components
-import DeliveryCategory from "./DeliveryCategory";
+import DeliveryCatagory from "./DeliveryCatagory";
 import { NextArrow, PrevArrow } from "../CarousalArrow";
 
 const DeliveryCarousal = () => {
@@ -60,14 +60,14 @@ const DeliveryCarousal = () => {
       </h1>
       <div className="lg:hidden flex gap-3 lg:gap-0 flex-wrap justify-between">
         {categories.map((food) => (
-          <DeliveryCategory {...food} />
+          <DeliveryCatagory {...food} />
         ))}
       </div>
 
       <div className="hidden lg:block">
         <Slider {...settings}>
           {categories.map((food) => (
-            <DeliveryCategory {...food} />
+            <DeliveryCatagory {...food} />
           ))}
         </Slider>
       </div>
