@@ -1,6 +1,7 @@
+// Libraries
 import express from "express";
 
-// model
+// Database modal
 import { RestaurantModel } from "../../database/allModels";
 
 const Router = express.Router();
@@ -68,6 +69,8 @@ Router.get("/search", async (req, res) => {
         const restaurants = await RestaurantModel.find({
             name: { $regex: searchString, $options: "i" },
         });
+        if (!restaurants)
+            return res.status(404).json({ error: `No Restaurant matched with ${searchString}` });
 
         return res.json({ restaurants });
     } catch (error) {

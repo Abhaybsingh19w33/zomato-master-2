@@ -8,7 +8,7 @@ export const ValidateRestaurantId = (resId) => {
     return Schema.validateAsync(resId);
 };
 
-export const ValidateCategory = (category) => {
+export const Validatecategory = (category) => {
 
     const Schema = joi.object({
         category: joi.string().required()

@@ -6,7 +6,7 @@ import express from "express";
 import { FoodModel } from "../../database/allModels";
 
 //Validation
-import { ValidateRestaurantId, ValidateCategory } from "../../validation/food";
+import { ValidateRestaurantId, Validatecategory } from "../../validation/food";
 
 const Router = express.Router();
 
@@ -39,14 +39,14 @@ Method    GET
 */
 Router.get("/:_id", async (req, res) => {
     try {
-      const { _id } = req.params;
-      const foods = await FoodModel.findById(_id);
-  
-      return res.json({ foods });
+        const { _id } = req.params;
+        const foods = await FoodModel.findById(_id);
+
+        return res.json({ foods });
     } catch (error) {
-      return res.status(500).json({ error: error.message });
+        return res.status(500).json({ error: error.message });
     }
-  });
+});
 
 /*
 Route            /c
@@ -57,8 +57,8 @@ Method           GET
 */
 Router.get("/c/:category", async (req, res) => {
     try {
-        await ValidateCategory(req.params);
-        
+        await Validatecategory(req.params);
+
         const { category } = req.params;
         const foods = await FoodModel.find({
             category: { $regex: category, $options: "i" }
@@ -68,6 +68,6 @@ Router.get("/c/:category", async (req, res) => {
     } catch (error) {
         return res.status(500).json({ error: error.message });
     }
-})
+});
 
 export default Router;

@@ -14,10 +14,10 @@ const UserSchema = new mongoose.Schema({
 });
 
 UserSchema.methods.generateJwtToken = function () {
-    return jwt.sign({ user: this._id.toString() }, "ZomatoApp");
+    return jwt.sign({ user: this._id.toString() }, "ZomatoAPP");
 };
 
-UserSchema.statics.findEmailAndPhone = async ({ email, phoneNumber }) => {
+UserSchema.statics.findByEmailAndPhone = async ({ email, phoneNumber }) => {
     //check whether the email exists
     const checkUserByEmail = await UserModel.findOne({ email });
 

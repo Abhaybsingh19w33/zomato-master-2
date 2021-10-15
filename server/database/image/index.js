@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const ImageSchema = new mongoose.Schema({
     images: [
         {
-            location: { type: String, requirted: true },
+            location: { type: String, required: true },
         },
     ]
 },

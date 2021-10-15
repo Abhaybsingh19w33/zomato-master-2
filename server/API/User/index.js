@@ -1,5 +1,8 @@
+// Libraries
 import express from "express";
+import passport from "passport";
 
+// Database modal
 import { UserModel } from "../../database/allModels";
 
 const Router = express.Router();
@@ -37,7 +40,7 @@ Router.get("/:_id", async (req, res) => {
         const user = await UserModel.findById(req.params._id);
         const { fullname } = user;
 
-        return res.json({ user: fullname });
+        return res.json({ user: { fullname } });
     } catch (error) {
         return res.status(500).json({ error: error.message });
     }
@@ -52,7 +55,7 @@ Access           Public
 Method           PUT
 */
 
-Router.put("/update/:_userId", async (req, res) => {
+Router.put("/update/:userId", async (req, res) => {
     try {
         const { userId } = req.params;
         const { userData } = req.body;

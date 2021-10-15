@@ -22,7 +22,7 @@ Method    POST
 Router.post("/signup", async (req, res) => {
     try {
         await ValidateSignup(req.body.credentials);
-        await UserModel.findEmailAndPhone(req.body.credentials);
+        await UserModel.findByEmailAndPhone(req.body.credentials);
 
         //DB
         const newUser = await UserModel.create(req.body.credentials);
