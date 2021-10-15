@@ -1,5 +1,7 @@
+// Importing Env Variables
 require("dotenv").config();
 
+// Libraries
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
@@ -13,16 +15,20 @@ import routeConfig from "./config/route.config";
 import Auth from "./API/Auth";
 import Restaurant from "./API/Restaurant";
 import Food from "./API/Food";
-import Menu from "./API/Menu";
+import Menu from "./API/menu";
 import Image from "./API/Image";
 import Order from "./API/orders";
-import Review from "./API/reviews";
+import Reviews from "./API/reviews";
+import User from "./API/user";
+import MailService from "./API/Mail";
+import Payments from "./API/Payments";
 
 //Database connection
 import ConnectDB from "./database/connection";
 
 const zomato = express();
 
+// application middlewares
 zomato.use(express.json());
 zomato.use(express.urlencoded({ extended: false }));
 // for adding extra layers of security
@@ -36,15 +42,17 @@ zomato.use(passport.session());
 googleAuthConfig(passport);
 routeConfig(passport);
 
-//For application routes
-//localhost:4000/auth/signup
+// Application Routes
 zomato.use("/auth", Auth);
 zomato.use("/restaurant", Restaurant);
 zomato.use("/food", Food);
 zomato.use("/menu", Menu);
 zomato.use("/image", Image);
 zomato.use("/order", Order);
-zomato.use("/reviews", Review);
+zomato.use("/reviews", Reviews);
+zomato.use("/user", User);
+zomato.use("/mail", MailService);
+zomato.use("/payments", Payments);
 
 zomato.get("/", (req, res) => {
     res.json({ message: "Setup Success !" });
