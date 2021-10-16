@@ -21,3 +21,16 @@ after_success:
   - docker push abhay19w33/zomato-server-client
   - docker push abhay19w33/zomato-server-server
   - docker push abhay19w33/zomato-server-nginx
+
+deploy:
+  # deploy to AWS EBS
+  provider: elasticbeanstalk
+  region: ap-south-1
+  app: Zomato-clone
+  env: Zomatoclone-env
+  bucket_name: elasticbeanstalk-ap-south-1-274669149290
+  bucket_path: zomatoclone
+  on:
+    branch: master
+  access_key_id: $AWS_KEY
+  secret_access_key: $AWS_SECRET
